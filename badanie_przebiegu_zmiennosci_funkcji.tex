@@ -1,0 +1,229 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{amssymb,latexsym}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage[autostyle]{csquotes}
+\usepackage{xcolor}
+ \MakeAutoQuote{‘}{’}
+\usepackage{algorithmicx}
+\usepackage{fancyvrb}
+
+\title{Badanie przebiegu zmienności funkcji\\ \large{Projekt w wxMaxima}}
+
+
+\newgeometry{tmargin=2.5cm, bmargin=3cm, lmargin=2cm, rmargin=2cm}
+\begin{document}
+\maketitle
+\begin{center}
+\includegraphics{"logo.jpg"}\\
+\vspace{200pt}
+\author{Emil Szewczak}\\
+{\sl Kierunek: Inżynieria i Analiza Danych}
+\end{center}
+
+\newpage
+\tableofcontents
+
+\newpage
+	
+\section{Wstęp}
+	Tematem projektu jest badanie przebiegu zmienności funkcji.\\
+Należy napisać program w MAXIMIE, dzięki któremu zostanie zbadany przebieg wybranej funkcji.\\ Kryteria oceny:
+\begin{itemize}
+	\item Warunek konieczny: funkcja musi posiadać co najmniej jedno ekstremum i co najmniej jednąasymptotę, a program ma działać.
+	\item Własności funkcji ponad warunek konieczny.
+	\item Wystąpienie wszystkich etapów badania przebiegu (bez własności specjalnych - parzystość, nie-parzystość, okresowość)
+	\item Właściwe skomentowanie każdego etapu.
+	\item Wykorzystanie możliwości Maximy w celu automatyzacji obliczeń.
+	\item Rysunek i jego elementy.
+\end{itemize}
+Poprzez analizę przebiegu zmienności funkcji rozumiem:  
+\begin{enumerate}
+\item Wyznaczeniu dziedziny funkcji.
+\item Wyznaczeniu miejsc zerowych funkcji (jeśli istnieją).
+\item Wyznaczeniu asymptot funkcji (asymptoty pionowe, poziome lub ukośne).
+\item Obliczeniu pochodnej funkcji i wyznaczeniu przedziałów monotoniczności funkcji (gdzie funkcja jest rosnąca lub malejąca itp.).
+\item Wyznaczeniu ekstremów lokalnych funkcji korzystając z pochodnej funkcji.
+\item Obliczeniu drugiej pochodnej funkcji i wyznaczeniu przedziałów wypukłości i wklęsłości funkcji oraz punkty przegięcia.
+\item Narysowania szkic wykresu funkcji. Wykres nie musi być dokładny, ale powinien uwzględniać charakterystyczne cechy funkcji opisane w poprzednich punktach (np. monotoniczność, asymptoty itd.).
+\item Utworzenie tabelki zmienności dla funkcji.
+\end{enumerate}
+
+\section{Funkcja}
+Wzór badanej funkcji: \\
+\includegraphics{fkod.png}
+
+\section{Dziedzina}
+Aby policzyć dziedzinę funkcji $ f(x)=\frac{x^3}{1-x^2} $:
+Musimy przyrównać miaownik do zera. Najpierw do zmiennej przypisuje wszystko pod kreską ułamkową:\\
+\includegraphics{mianownik.png}\\
+Następnie przyrównuje mianownik do zera, aby policzyć jakich argumentów funkcja nie może przyjąć:\\
+\includegraphics{dziedzina.png}\\
+Zatem funkcja nie ma wartości w punktach 1 i -1. \\
+
+
+Ostatecznie dziedziną funkcji $f$ jest zbiór:
+ $ D: x \in \mathbb{R} \setminus \{ -1,1 \} $.
+
+\section{Miejsca zerowe}
+Aby policzyć miejsca zerowe funkcji $ f(x)=\frac{x^3}{1-x^2} $ należy przyrównać funkcję do 0:\\
+\includegraphics{zerowe.png}\\
+Punkt $x=0$ jest punktem przecięcia się wykresu funkcji z osią Ox.\\
+
+
+Miejsce zerowe funkcji $f$ to: $x=0$
+
+
+\section{Asymptoty}
+
+\subsection{Asymptoty pionowe}
+Asymptoty pionowe - proste pionowe, przechodzące przez punkty nieciągłości funkcji (granice funkcji w tych punktach są rozbieżne).\\
+Z dzidziny wynika, że funkcja jest nieciągła w punktach $x=-1 \land x=1$. Zbadajmy granice lewostronne i prawostronne w tych punktach.\\
+
+Dla $x=1$:
+
+\begin{itemize}
+	\item Granica lewostronna:\\
+	\includegraphics{lewa1.png}
+	\item Granica prawostronna:\\
+	\includegraphics{prawa1.png}
+\end{itemize}
+Granice są rozbieżne więc w punkcje $x=1$ jest asymptota pionowa.\\
+
+Dla $x=-1$:
+
+\begin{itemize}
+	\item Granica lewostronna:\\
+	\includegraphics{lewa2.png}
+	\item Granica prawostronna:\\
+	\includegraphics{prawa2.png}
+\end{itemize}
+Granice są rozbieżne więc w punkcje $x=-1$ jest asymptota pionowa.\\
+
+Ostatecznie funkcja $f$ ma dwie asymptoty pionowe: $x=-1 \land x=1$.
+
+\subsection{Asymptoty poziome}
+Asymptoty poziome istnieją, jeżeli granice w $-\infty $ oraz $\infty $ są skończone.\\
+
+Zbadajmy granicę funkcji w $\infty $:\\
+\includegraphics{pozioma1.png}
+
+oraz w $-\infty $:\\
+\includegraphics{pozioma2.png}\\
+
+Obie te granice nie są skończone dlatego funkcja $f$ nie ma asymptot poziomych.
+
+\subsection{Asymptoty ukośne}
+Asymptota ukośna to prosta postaci $ax+b$.Istieją asymptoty lewostronne i prawostronne. Aby one istniały granice z $f-(ax+b)$ przy $-\infty$ lub $\infty$ muszą być równe zero.\\
+
+Zbadajmy asymptotę ukośną prawostronną.\\ \\
+Znajdzmy najpierw współczynnik $a$ prostej, badając taką granice:\\
+\includegraphics{ukos1.png}\\
+Zbadajmy teraz granicę z funkcji minus $ax + 0$:\\
+\includegraphics{ukos2.png}\\
+
+Ta granica jest równa 0, dlatego $-x$ jest asymptotą ukośną prawostronną.\\
+
+Zbadajmy asymptotę ukośną lewostronną.\\ \\
+Znajdzmy najpierw współczynnik $a$ prostej, badając taką granice:\\
+\includegraphics{ukos3.png}\\
+Zbadajmy teraz granicę z funkcji minus $ax + 0$:\\
+\includegraphics{ukos4.png}\\
+
+Ta granica jest równa 0, dlatego $-x$ jest asymptotą ukośną lewostronną.\\
+
+Z tego wynika, że prosta $-x$ jest asymptotą ukośną obustronną funkcji $f$.
+
+\section{Pierwsza pochodna}
+Pochodna funkcji $ f(x)=\frac{x^2-1}{x^2-2} $:\\
+\includegraphics{pochodna1.png}\\
+Po uproszczeniu:\\
+\includegraphics{pochodna2.png}\\
+
+Zatem ostatecznie $ f'(x)=-\frac{x^4-3x^2}{x^4-2x^2+1} $.\\
+
+\subsection{Wyznaczenie przedziału monotoniczności}
+Aby wyznaczyć przedziały monotoniczności funkcji sprawdzam kiedy pierwsza pochodna jest mniejsza lub większa od zera. Funkcja jest rosnąca gdy jej pochodnia jest dodatnia, a malejąca gdy ujemna.\\
+
+Funkcja $f$ jest rosnąca dla:\\
+\includegraphics{przedzial1.png}\\
+
+a  malejąca dla:\\
+\includegraphics{przedzial2.png}\\
+
+Co łatwiej jest odczytać z wykresu pochodnej:\\
+\includegraphics[height=13cm]{wykpoch1.png}
+
+Oznacza to, że funkcja $f$ dla $ x \in (-\sqrt{3},-1)\cup(-1,0)\cup(0,1)\cup(1,\sqrt{3})$ rośnie, a dla $ x \in (-\infty,-\sqrt{3})\cup(\sqrt{3},\infty)$ maleje.
+
+\section{Ekstrema lokalne funkcji}
+Funkcja może mieć ekstremum tylko w tych miejscach gdzie jej pochodna się zeruje. Dodatkowo aby ekstremum istniało, to funkcja musi w danym punkcie zmienić monotoniczność.\\
+
+W przypadku funkcji $f$:\\
+\includegraphics{pochodna3.png}\\
+
+
+Zatem punkty $ x=-\sqrt{3} \land x=\sqrt{3} \land x=0 $ są podejrzane o ekstremum. Funkcja $f$ zmienia swoją monotoniczność tylko w punktach $ x=-\sqrt{3} \land x=\sqrt{3} $.\\
+
+Funkcja $f$:
+\begin{itemize}
+	\item $f < 0$, dla $x<-\sqrt{3}$,
+	\item $f > 0$, dla $x>-\sqrt{3}$,
+\end{itemize}
+Zatem w punkcje $x=-\sqrt{3}$ jest minimum lokalne.\\
+
+Wartość ekstremum to:\\
+\includegraphics{min.png}\\
+
+Funkcja $f$:
+\begin{itemize}
+	\item $f > 0$, dla $x<\sqrt{3}$,
+	\item $f < 0$, dla $x>\sqrt{3}$,
+\end{itemize}
+Zatem w punkcje $x=-\sqrt{3}$ jest maksimum lokalne.\\
+
+Wartość ekstremum to:\\
+\includegraphics{max.png}
+
+
+\section{Druga pochodna}
+Druga pochodna funkcji  $ f $:\\
+\includegraphics{2pochodna1.png}\\
+Po uproszczeniu:\\
+\includegraphics{2pochodna2.png}\\
+
+\subsection{Przedziąły wypukłości i wklęsłości}
+Funkcja $f(x)$ jest wypukła, jeśli $f''(x)>0 $:\\
+\includegraphics{wypuklosc.png}\\
+\newpage
+Funkcja $f(x)$ jest wklęsła, jeśli $f''(x)<0 $:\\
+\includegraphics{wkleslosc.png}\\
+
+Co łatwiej odczytać z wykresu drugiej pochodnej:\\
+\includegraphics[height=13cm]{wykpoch2.png}
+
+Funkcja $f$ jest wypukła dla $x \in (-\infty, -1)\cup(0,1)$, a wklęsła dla $x \in (-1,0)\cup(1,\infty)$.
+
+\subsection{Punkty przegięcia}
+Punkty przegięcia występują w tych miejscach, w których funkcja zmienia wypukłość, czyli $f''(x)=0$:\\
+\includegraphics{pochodna4.png}\\
+
+Zatem funkcja $f$ ma jeden rzeczywisty punkt przegięcia $x=0$
+
+
+\section{Tabela zmienności funkcji}
+\includegraphics[width=17cm]{tabela.png}
+
+
+\section{Wykres funkcji}
+\includegraphics[height=13cm]{wykres.png}
+Narysowana w MAXIMIE za pomocą tego kodu:\\
+\includegraphics{kod.png}
+
+\end{document}
+
